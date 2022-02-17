@@ -3,4 +3,4 @@ def print_hi(name):
 
 
 if __name__ == '__main__':
-    print_hi('World')
+    print_hi('Lesson_1')
