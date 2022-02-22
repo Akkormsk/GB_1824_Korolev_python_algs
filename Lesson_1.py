@@ -121,7 +121,7 @@ def num_9() -> str:
 if __name__ == '__main__':
     pass
     try:
-        # print(num_1(int(input('1. Введите 3-значное число: '))))
+        print(num_1(int(input('1. Введите 3-значное число: '))))
         # print(num_2())
         # print(num_3(input('Введите х1,у1,х2,у2 подряд через запятую: ')))
         # print(num_4())
