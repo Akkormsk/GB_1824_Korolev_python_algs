@@ -4,14 +4,14 @@ import random
 def num_1(td_num: int) -> str:
     sm = 0
     mul = 1
-    if 99 < td_num < 1000:
+    if not 99 < td_num < 1000:
+        return 'Повторите ввод'
+    else:
         for i in str(td_num):
             i = int(i)
             sm += i
             mul *= i
-            res = f'Сумма - {sm}, произведенеие - {mul}'
-    else:
-        raise ValueError('Повторите ввод')
+        res = f'Сумма - {sm}, произведенеие - {mul}'
     return res
 
 
@@ -45,8 +45,12 @@ def num_2(a=5, b=6) -> str:
 
 def num_3(coord: str) -> str:
     crd_lst = list(map(int, coord.split(',')))
-    k = crd_lst[3] - crd_lst[1]
-    b = crd_lst[2] - crd_lst[0]
+    x1 = crd_lst[0]
+    y1 = crd_lst[1]
+    x2 = crd_lst[2]
+    y2 = crd_lst[3]
+    k = (y1 - y2) / (x1 - x2)
+    b = y2 - k * x2
     res = f'y = {k}*x + {b}'
     return res
 
@@ -65,19 +69,19 @@ def num_4() -> str:
     return res
 
 
-def num_5(lets: str) -> list:
+def num_5(lets: str) -> str:
     lets_ord_list = list(map(ord, lets.split(',')))
-    lets_ord_list.append(lets_ord_list[0] - lets_ord_list[1])
-    if lets_ord_list[2] < 0:
-        lets_ord_list[2] = -lets_ord_list[2]
-    return lets_ord_list
+    pos_let_1 = lets_ord_list[0] - ord('a') + 1
+    pos_let_2 = lets_ord_list[1] - ord('a') + 1
+    dif = abs(lets_ord_list[1] - lets_ord_list[0]) - 1
+    return f'Позиция первого символа - {pos_let_1}, Позиция второго символа - {pos_let_2}, между ними {dif} символа'
 
 
 def num_6(let_num: int) -> str:
-    if 1 <= let_num <= 26:
-        res = chr(96 + let_num)
+    if not 1 <= let_num <= 26:
+        return 'Повторите ввод'
     else:
-        raise ValueError('Повторите ввод')
+        res = chr(96 + let_num)
     return res
 
 
@@ -88,23 +92,20 @@ def num_7() -> str:
     if a * b * c:
         if a == b == c:
             res = 'Равносторонний'
-        elif a != b != c != a:
-            res = 'Разносторонний'
-        else:
+        elif a == b or a == c or b == c:
             res = 'Равнобедренный'
+        else:
+            res = 'Разносторонний'
     else:
         res = 'Треугольник построить невозможно'
     return res
 
 
 def num_8(year: int) -> bool:
-    if year % 4 == 0 and year % 100 != 0 or year % 400 == 0:
-        return True
-    else:
-        return False
+    return year % 4 == 0 and year % 100 != 0 or year % 400 == 0
 
 
-def num_9() -> str:
+def num_9():
     a = int(input('Введите число 1: '))
     b = int(input('Введите число 2: '))
     c = int(input('Введите число 3: '))
@@ -115,20 +116,16 @@ def num_9() -> str:
     elif b < a < c or c < a < b:
         return a
     else:
-        raise ValueError('Повторите ввод')
+        return 'Повторите ввод'
 
 
 if __name__ == '__main__':
-    pass
-    try:
-        print(num_1(int(input('1. Введите 3-значное число: '))))
-        # print(num_2())
-        # print(num_3(input('Введите х1,у1,х2,у2 подряд через запятую: ')))
-        # print(num_4())
-        # print(num_5(input('Введите две буквы через запятую без пробела: ')))
-        # print(num_6(int(input('Введите номер буквы: '))))
-        # print(num_7())
-        # print(num_8(int(input('Введите год на проверку високосности: '))))
-        # print(num_9())
-    except Exception as e:
-        print(e)
+    print(num_1(int(input('1. Введите 3-значное число: '))))
+    # print(num_2())
+    # print(num_3(input('Введите х1,у1,х2,у2 подряд через запятую: ')))
+    # print(num_4())
+    # print(num_5(input('Введите две буквы через запятую без пробела: ')))
+    # print(num_6(int(input('Введите номер буквы: '))))
+    # print(num_7())
+    # print(num_8(int(input('Введите год на проверку високосности: '))))
+    # print(num_9())
