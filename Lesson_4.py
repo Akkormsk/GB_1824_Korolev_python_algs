@@ -27,6 +27,7 @@ class MinStack:
         return self.stack[-1][1]
 
 
+
 # 2 не понял, в каком виде надо подавать вход на stepik, поэтому сделал тут
 
 size, n = map(int, input().split(' '))
