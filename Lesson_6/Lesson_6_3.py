@@ -35,44 +35,21 @@ class Tree:
             if 2 * i + 2 < n and self.arr[2 * i + 2]:
                 self.arr[i].right_child(self.arr[2 * i + 2])
 
-    def dfs_pre_rec(self):
-        start_node = self.root
-        visited = []
+    def lca(self, p, q):
+        root = self.root
 
-        def helper(node):
-            visited.append(node)
-            helper(node.left)
-            helper(node.right)
-            return visited
-
-        return helper(start_node)
-
-    def dfs_pre_it(self):
-        visited = []
-        stack = [self.root]
-        while stack:
-            node = stack.pop()
-            visited.append(node)
-            if node.right:
-                stack.append(node.right)
+        def helper(node, p, q):
+            if node.value == str(q) or node.value == str(p):
+                return node
             if node.left:
-                stack.append(node.left)
-        return visited
-
-    def lca(self, q, p):
-
-        def rec_tree(node):
-            if not node:
-                return False
-            left = rec_tree(node.left)
-            right = rec_tree(node.right)
-            mid = node.value == str(p) or node.value == str(q)
-            if mid + left + right >= 2:
-                self.res = node
-            return mid or left or right
-
-        rec_tree(self.root)
-        return self.res
+                left = helper(node.left, p, q)
+            if node.right:
+                right = helper(node.right, p, q)
+            if left and right:
+                return node
+            else:
+                return left or right
+        return helper(root, p, q)
 
 
 def main():

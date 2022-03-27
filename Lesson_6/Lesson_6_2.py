@@ -16,16 +16,15 @@ class Solution:
         q = deque()
         q.append(root)
         while q:
-            next = None
-            for _ in range(len(q)):
+            size = len(q)
+            for i in range(size):
                 curr = q.popleft()
-                if curr.right:
-                    curr.right.next = next
-                    q.append(curr.right)
-                    next = curr.right
+                if i != size - 1:
+                    curr.next = q[0]
                 if curr.left:
-                    curr.left.next = next
                     q.append(curr.left)
-                    next = curr.left
+                if curr.right:
+                    q.append(curr.right)
+
         return root
 
